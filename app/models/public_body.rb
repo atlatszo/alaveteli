@@ -261,13 +261,13 @@ class PublicBody < ActiveRecord::Base
 
     # When name or short name is changed, also change the url name
     def short_name=(short_name)
-        globalize.write(I18n.locale, :short_name, short_name)
+        globalize.write(FastGettext.locale, :short_name, short_name)
         self[:short_name] = short_name
         self.update_url_name
     end
 
     def name=(name)
-        globalize.write(I18n.locale, :name, name)
+        globalize.write(FastGettext.locale, :name, name)
         self[:name] = name
         self.update_url_name
     end
