@@ -16,8 +16,9 @@ class GeneralController < ApplicationController
         # either from config, or based on a (slow!) query if not set
         body_short_names = AlaveteliConfiguration::frontpage_publicbody_examples.split(/\s*;\s*/).map{|s| "'%s'" % s.gsub(/'/, "''") }.join(", ")
         @locale = self.locale_from_params()
+        underscore_locale = @locale.gsub '-', '_'
         locale_condition = 'public_body_translations.locale = ?'
-        conditions = [locale_condition, @locale]
+        conditions = [locale_condition, underscore_locale]
         I18n.with_locale(@locale) do
             if body_short_names.empty?
                 # This is too slow
