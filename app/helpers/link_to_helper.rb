@@ -146,7 +146,7 @@ module LinkToHelper
 
     def user_or_you_link(user)
         if @user && user == @user
-            link_to h("you"), user_path(user)
+            link_to h(_("you")), user_path(user)
         else
             link_to h(user.name), user_path(user)
         end
@@ -154,7 +154,7 @@ module LinkToHelper
 
     def user_or_you_capital(user)
         if @user && user == @user
-            return h("You")
+            return h(_("you").mb_chars.capitalize.to_s)
         else
             return h(user.name)
         end
